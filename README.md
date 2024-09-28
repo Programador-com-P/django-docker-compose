@@ -1,58 +1,55 @@
-# Run Django with Docker Compose
+# Executando um Docker Compose no Django
+Esse repositório contêm um código padrão para um projeto Django com Docker Compose.
 
-This repo contains code to spin up a boilerplate Django project with Docker Compose.
+Será hospedado localmente usando o container de Gunicorn e Nginx.
 
-It will be hosted locally using Gunicorn and Nginx containers.
+# Uso
 
-
-# Usage
-
-Run services in the background:
+Executar serviços em plano de fundo:
 `docker-compose up -d`
 
-Run services in the foreground:
+Executar serviços no primeiro plano:
 `docker-compose up --build`
 
-Inspect volume:
+Inspecionar Volume:
 `docker volume ls`
-and
-`docker volume inspect <volume name>`
+ou
+`docker volume inspect <nome do volume>`
 
-Prune unused volumes:
+Apagar volumes não utilizados:
 `docker volume prune`
 
-View networks:
+Visão da Rede:
 `docker network ls`
 
-Bring services down:
+Parar serviços:
 `docker-compose down`
 
-Open a bash session in a running container:
-`docker exec -it <container ID> /bin/bash`
+Abrir uma sessão bash enquanto o container está executando:
+`docker exec -it <ID do container> /bin/bash`
 
 
-# Flow
+# Fluxo
 
-1. The docker-compose yaml file will first spin up the Gunicorn container that will run the Django project at port 8000
+1. O arquivo do yaml do Docker Compose irá primeiramente subir o container do Gunicorn que irá executar o projeto Django na porta 8000.
 
-2. The entrypoint to the *django_gunicorn* service is *entrypoint.sh*. This script will do a database migration and it will also collect the static files used by the Django project.
+2. O ponto de entrada para o serviço *django_gunicorn* está servido no *entrypoint.sh*. Esse script irá fazer a migration do banco de dados e irá também coletar os arquivos estáticos usados pelo projeto Django.
 
-3. The static files will be collected in *STATIC_ROOT*. This is the */static* directory in the container.
+3. Os arquivos estáticos irá ser coletado no *STATIC_ROOT*. o */static* será diretório no container.
 
-4. This directory is mounted to a Docker volume on the local machine.
+4. Esse diretório será montado para um volume Docker em uma máquina virtual.
 
-5. The next container that will be spun is Nginx. The Dockerfile for this container is in the */nginx* folder. The Nginx configuration will interact with the Gunicorn service at port 8000 and it will also serve the static files in */static* also mounted to the same volume.
+5. O próximo container que será levantado é o Nginx. O Dockerfile para esse container está na pasta */nginx*. A configuração do Nginx irá interagir com o serviço do Gunicorn na porta 800 e irá também servir os arquivos estáticos no */static* tamém montado pelo mesmo volume..
 
 
 # Endpoints
 
-* You will be able to reach the Django project at 0.0.0.0:80. This is the Nginx endpoint that interacts with Gunicorn at 0.0.0.0:8000
+* Você irá ser capaz de acessar o projeto Django no 0.0.0.0:80. Isso é o endpoint que interage com o Gunicorn no 0.0.0.0:8000.
 
-* To validate that the static files are being served correctly, you can visit 0.0.0.0:80/admin. This endpoint will show you the admin page with the correct style used.
-Gunicorn does not serve static files, so if you visit 0.0.0.0:8000/admin - the admin page will pop up without the default style.
+* Para validar que os arquivos estão sendo servidos corretamente, você pode visitar 0.0.0.0:80/admin. Esse endpoint irá mostrar a tela de administrador com os estilos corretos usados.
 
+* Gunicorn não serve os arquivos estáticos, por isso se você visita o 0.0.0.0:8000/admin (A página de administrador irá aparecer sem o estilo padrão)
 
+### Modelo da infraestrutura
 
-### Infrastructure model
-
-![Infrastructure model](.infragenie/infrastructure_model.png)
+![Modelo da infraestrutura](.infragenie/infrastructure_model.png)
