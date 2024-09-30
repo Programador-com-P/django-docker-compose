@@ -1,3 +1,5 @@
+# Requisitos para executar o projeto
+
 # Executando um Docker Compose no Django
 Esse repositório contêm um código padrão para um projeto Django com Docker Compose.
 
@@ -48,3 +50,11 @@ Abrir uma sessão bash enquanto o container está executando:
 * Para validar que os arquivos estão sendo servidos corretamente, você pode visitar 0.0.0.0:80/admin. Esse endpoint irá mostrar a tela de administrador com os estilos corretos usados.
 
 * Gunicorn não serve os arquivos estáticos, por isso se você visita o 0.0.0.0:8000/admin (A página de administrador irá aparecer sem o estilo padrão)
+
+
+# Lista de afazeres
+- [x] Traduzir para Português Brasileiro
+- [x] Adicionar o Nginx no projeto
+- [x] Adicionar o PostgreSQL no projeto
+- [x] Adicionar o Gunicorn no projeto
+- [ ] Adicionar mais detalhes automatizados no .env
