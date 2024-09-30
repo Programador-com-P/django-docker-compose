@@ -38,7 +38,7 @@ Abrir uma sessão bash enquanto o container está executando:
 
 4. Esse diretório será montado para um volume Docker em uma máquina virtual.
 
-5. O próximo container que será levantado é o Nginx. O Dockerfile para esse container está na pasta */nginx*. A configuração do Nginx irá interagir com o serviço do Gunicorn na porta 800 e irá também servir os arquivos estáticos no */static* tamém montado pelo mesmo volume..
+5. O próximo container que será levantado é o Nginx. O Dockerfile para esse container está na pasta */nginx*. A configuração do Nginx irá interagir com o serviço do Gunicorn na porta 8000 e irá também servir os arquivos estáticos no */static* tamém montado pelo mesmo volume..
 
 
 # Endpoints
@@ -48,7 +48,3 @@ Abrir uma sessão bash enquanto o container está executando:
 * Para validar que os arquivos estão sendo servidos corretamente, você pode visitar 0.0.0.0:80/admin. Esse endpoint irá mostrar a tela de administrador com os estilos corretos usados.
 
 * Gunicorn não serve os arquivos estáticos, por isso se você visita o 0.0.0.0:8000/admin (A página de administrador irá aparecer sem o estilo padrão)
-
-### Modelo da infraestrutura
-
-![Modelo da infraestrutura](.infragenie/infrastructure_model.png)
