@@ -28,7 +28,6 @@ Parar serviços:
 Abrir uma sessão bash enquanto o container está executando:
 `docker exec -it <ID do container> /bin/bash`
 
-
 # Fluxo
 
 1. O arquivo do yaml do Docker Compose irá primeiramente subir o container do Gunicorn que irá executar o projeto Django na porta 8000.
