@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   django:
     volumes:
@@ -10,12 +8,6 @@ services:
       context: .
     ports:
       - "8000:8000"
-    environment:
-      - DB_NAME=your_database_name
-      - DB_USER=your_user
-      - DB_PASSWORD=your_password
-      - DB_HOST=postgres
-      - DB_PORT=5432
     networks:
       - webnet
   nginx:
